@@ -1,7 +1,10 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import Main from "./Main";
 import Footer from "./Footer";
+import Login from "./Login";
+import Register from "./Register";
 
 import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
@@ -125,19 +128,19 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-        <div className="root">
+        {/*<div className="root">*/}
 
           <Header/>
 
-          <Main
-            onEditAvatar={handleEditAvatarClick}
-            onAddPlace={handleAddPlaceClick}
-            onEditProfile={handleEditProfileClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleDeleteCard}
-            cards={cards}
-          />
+              <Main
+                onEditAvatar={handleEditAvatarClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditProfile={handleEditProfileClick}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleDeleteCard}
+                cards={cards}
+              />
 
           <Footer/>
 
@@ -177,7 +180,7 @@ function App() {
             isOpen={isImagePopupOpen}
             onClose={closeAllPopups}
           />
-        </div>
+        {/*</div>*/}
     </CurrentUserContext.Provider>
   );
 }
