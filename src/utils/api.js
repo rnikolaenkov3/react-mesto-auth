@@ -1,9 +1,10 @@
-import { apiConfig } from './utils';
+import { apiConfig, AUTH_LINK } from './utils';
 
 class Api {
   constructor(config) {
     this._url = config.url;
     this._headers = config.headers;
+    this._authUrl = AUTH_LINK;
   }
 
   _check(res) {
@@ -95,6 +96,45 @@ class Api {
 
   editAvatar(link) {
     return this._sendPatchRequest('users/me/avatar', {avatar: link});
+  }
+
+  register({email, password}) {
+    const fullUrl = `${this._authUrl}/signup`;
+    return fetch(fullUrl, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({email, password})
+    }).then((res) => {
+      return this._check(res);
+    })
+  }
+
+  checkToken(token) {
+    const fullUrl = `${this._authUrl}/users/me`;
+    return fetch(fullUrl, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization" : `Bearer ${token}`
+      },
+    }).then((res) => {
+      return this._check(res);
+    })
+  }
+
+  login({email, password}) {
+    const fullUrl = `${this._authUrl}/signin`;
+    return fetch(fullUrl, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email, password})
+    }).then((res) => {
+      return this._check(res);
+    })
   }
 
 }

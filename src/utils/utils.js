@@ -5,3 +5,11 @@ export const apiConfig = {
     'Authorization': '87a20906-15d2-4ba8-8690-ee52e9ae8d47'
   }
 };
+
+export const AUTH_LINK = 'https://auth.nomoreparties.co';
+
+export const LINKS = {
+  'home': '/',
+  'login': '/sign-in',
+  'register': '/sign-up'
+}
