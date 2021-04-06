@@ -131,12 +131,7 @@ function App() {
 
   const handleDeleteCard = (card) => {
     api.deleteCard(card._id).then(() => {
-      const newCards = cards.filter((c) => {
-        if (c._id !== card._id) {
-          return c;
-        }
-      })
-      setCards(newCards);
+      setCards((cards) => cards.filter((c) => c._id === card._id));
     }).catch((res) => {
       console.log(res);
     });
@@ -154,6 +149,7 @@ function App() {
   const handleRegisterSubmit = ({email, password}) => {
     api.register({email, password})
       .then((data) => {
+        history.push(LINKS.login);
         setIsSuccessPopupOpen(true);
       })
       .catch((err) => {
@@ -188,6 +184,9 @@ function App() {
           .then(data => {
             setEmail(data.data.email);
             setLoggedIn(true);
+          })
+          .catch(err => {
+            console.log(err);
           })
       }
     }

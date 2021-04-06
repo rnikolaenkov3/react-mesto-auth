@@ -26,18 +26,18 @@ function Header(props) {
             </Route>
             <Route path={LINKS.login}>
               <Link
-                to={LINKS.login}
-                className="root__link"
-              >
-                Вход
-              </Link>
-            </Route>
-            <Route path={LINKS.register}>
-              <Link
                 to={LINKS.register}
                 className="root__link"
               >
                 Регистрация
+              </Link>
+            </Route>
+            <Route path={LINKS.register}>
+              <Link
+                to={LINKS.login}
+                className="root__link"
+              >
+                Вход
               </Link>
             </Route>
           </Switch>
